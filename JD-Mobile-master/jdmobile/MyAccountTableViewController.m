@@ -29,20 +29,6 @@
 
 @implementation MyAccountTableViewController
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    //接受传值；
-    _sexStr = @"女";
-    SexViewController * sex = [[SexViewController alloc] init];
-    sex.sexBlock = ^(NSString * sex){
-        
-        _sexStr = sex;
-        
-    };
-    [self.tableView reloadData];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=JDColor(240, 243, 245);
@@ -53,6 +39,7 @@
     
     _birthLabel = [[UILabel alloc] init];
     _birthLabel.text = @"1990-01-01";
+    _sexStr = @"女";
     
 }
 
@@ -132,6 +119,16 @@
         
     }else if (indexPath.section == 0 && indexPath.row == 3){
         SexViewController * sex = [[SexViewController alloc] init];
+        
+        //接受传值；
+        
+        sex.sexBlock = ^(NSString * sex){
+            
+            _sexStr = sex;
+            [self.tableView reloadData];
+            
+        };
+        
         [self.navigationController pushViewController:sex animated:YES];
     }else if (indexPath.section == 0 && indexPath.row == 4){
         BirthSlectSheet * dateSheet = [[BirthSlectSheet alloc] initWithFrame:self.view.bounds];

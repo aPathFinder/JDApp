@@ -82,7 +82,9 @@
     self.lastIndexPath = indexPath;
     
     if (indexPath.row == 1) {
-       // self.sexBlock(@"女");
+        self.sexBlock(@"女");
+    }else if (indexPath.row == 0){
+        self.sexBlock(@"男");
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
